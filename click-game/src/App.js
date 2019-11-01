@@ -8,8 +8,29 @@ import genewilders from './genewilder.json';
 class App extends React.Component {
 
   state= {
-    genewilders
+    genewilders,
+    score:0,
+    highScore:0,
+    clicked: false
   }
+
+  clickGene = (clicked) => {
+    if(clicked){
+      if(this.state.score > this.state.highScore){
+        this.setState({highScore: this.state.score});
+      }
+    } else {
+      var updateScore = this.state.score;
+      this.setState({
+        score: updateScore+1,
+        genewilders: this.randomize(this.state.genewilders)
+      });
+      this.state.clicked = true;
+    }console.log(this.state.clicked)
+    console.log(this.state.score)
+  }
+  
+
 
   randomize = a => {
     for (let i = a.length - 1; i > 0; i--) {
@@ -19,12 +40,13 @@ class App extends React.Component {
   return a;
   }
   
-  clicked = id => {
-    alert("clicked!")
-    this.setState({genewilders:this.randomize(this.state.genewilders)})
-    // Filter this.state.friends for friends with an id not equal to the id being remo
-    
-  };
+  resetGame = () => {
+    this.setState({
+      score: 0,
+      images: this.randomize(this.state.genewilders)
+    })
+  }
+
 
 
   render() {
@@ -34,7 +56,8 @@ class App extends React.Component {
         {
           this.randomize(this.state.genewilders).map(card => (
           <GeneCard
-            clicked={this.clicked}
+            clicked={this.state.clicked}
+            clickedGene={this.clickGene}
             id={card.id}
             key={card.id}
             name={card.name}
