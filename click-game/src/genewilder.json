@@ -1,0 +1,71 @@
+[
+  {
+    "clicked": false,
+    "id": 1,
+    "name": "Gene",
+    "image": "./images/gene1.jpeg"
+  },
+  {
+    "clicked": false,
+    "id": 2,
+    "name": "Gene",
+    "image": "./images/gene2.jpeg"
+  },
+  {
+    "clicked": false,
+    "id": 3,
+    "name": "Gene",
+    "image": "./images/gene3.jpeg"
+  },
+  {
+    "clicked": false,
+    "id": 4,
+    "name": "Gene",
+    "image": "./images/gene4.jpeg"
+  },
+  {
+    "clicked": false,
+    "id": 5,
+    "name": "Gene",
+    "image": "./images/gene5.jpeg"
+  },
+  {
+    "clicked": false,
+    "id": 6,
+    "name": "Gene",
+    "image": "./images/gene6.jpeg"
+  },
+  {
+    "clicked": false,
+    "id": 7,
+    "name": "Gene",
+    "image": "./images/gene7.jpeg"
+  },
+  {
+    "clicked": false,
+    "id": 8,
+    "name": "Gene",
+    "image": "./images/gene8.jpeg"
+  },
+  {
+    "clicked": false,
+    "id": 9,
+    "name": "Gene",
+    "image": "./images/gene9.jpeg"
+  },
+  {
+    "clicked": false,
+    "id": 10,
+    "name": "Gene",
+    "image": "./images/gene10.jpeg"  },
+  {
+    "clicked": false,
+    "id": 11,
+    "name": "Gene",
+    "image": "./images/gene11.jpeg"  },
+  {
+    "clicked": false,
+    "id": 12,
+    "name": "Gene",
+    "image": "./images/gene12.jpeg"  }
+]
