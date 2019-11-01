@@ -1,9 +1,9 @@
 import React from 'react';
 import GeneCard from './components/geneCard.js'
-import Wrapper from "./components/Wrapper";
-import Title from "./components/Title";
 import './App.css';
 import genewilders from './genewilder.json';
+import Wrapper from './components/Wrapper'
+
 
 class App extends React.Component {
 
@@ -11,33 +11,55 @@ class App extends React.Component {
     genewilders,
     score:0,
     highScore:0,
-    clicked: false
   }
 
-  clickGene = (clicked) => {
-    if(clicked){
-      if(this.state.score > this.state.highScore){
-        this.setState({highScore: this.state.score});
+  clickGene = (id) => {
+    console.log(id);
+    const genewilders = this.state.genewilders.map(genewilder => {
+      if(genewilder.id === id && genewilder.clicked === true){
+        if (this.state.score > this.state.highScore) {
+          this.setState({ highScore: this.state.score });
+        }
+        this.resetGame();
+      } else if (genewilder.id === id && genewilder.clicked === false){
+        var currentScore = this.state.score;
+        genewilder.clicked = true;
+        this.setState({score: currentScore + 1});
       }
-    } else {
-      var updateScore = this.state.score;
-      this.setState({
-        score: updateScore+1,
-        genewilders: this.randomize(this.state.genewilders)
-      });
-      this.state.clicked = true;
-    }console.log(this.state.clicked)
-    console.log(this.state.score)
+      console.log(currentScore)
+      return genewilder;
+    })
+    this.setState({genewilders});
   }
   
 
+  // clickGene = (id) => {
+  //   const genewilders = this.state.genewilders.map(genewilders=> {
 
-  randomize = a => {
-    for (let i = a.length - 1; i > 0; i--) {
+  //   })
+  //   if(clicked){
+  //     if(this.state.score > this.state.highScore){
+  //       this.setState({highScore: this.state.score});
+  //     }
+  //   } else{
+  //     var updateScore = this.state.score;
+  //     this.setState({
+  //       score: updateScore+1,
+
+  //       genewilders: this.randomize(this.state.genewilders)
+  //     });
+  //   }console.log(this.state.clicked)
+  //   console.log(this.state.score)
+  // }
+  
+
+
+  randomize = () => {
+    for (let i = this.state.genewilders.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
+      [this.state.genewilders[i], this.state.genewilders[j]] = [this.state.genewilders[j], this.state.genewilders[i]];
+    }
+    this.setState({genewilders});
   }
   
   resetGame = () => {
@@ -47,26 +69,39 @@ class App extends React.Component {
     })
   }
 
-
-
   render() {
     return (
+      <div>
+      <div className="scoreContainer">
+      <h3 className="score">Score: {this.state.score}/12</h3>
+      <h3 className="score">High Score: {this.state.highScore}</h3>
+      </div>
+      
       <Wrapper>
-        <Title>Gene Wild!</Title>
-        {
-          this.randomize(this.state.genewilders).map(card => (
-          <GeneCard
-            clicked={this.state.clicked}
-            clickedGene={this.clickGene}
-            id={card.id}
-            key={card.id}
-            name={card.name}
-            image={card.image}
+        {this.state.genewilders.map(image => (
+          <GeneCard 
+            image={image.image}
+            clickCard={this.clickGene}
+            clicked={this.state.genewilders.clicked}
+            randomize={this.randomize}
+            id={image.id}
+            key={image.id}
           />
-        ))}
-      </Wrapper>
-    );
-  }
+        ))
+        }
+        </Wrapper>
+        </div>
+        
+    
+      );
+    };
+      
+    
+    
+  
 }
+
+  
+
 
 export default App;
