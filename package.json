@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Gccoutret/ClickGame/issues"
   },
-  "homepage": "https://github.com/Gccoutret/ClickGame#readme"
+  "homepage": "https://github.com/Gccoutret/ClickGame/click-game",
+  "dependencies": {
+    "gh-pages": "^2.1.1"
+  }
 }
